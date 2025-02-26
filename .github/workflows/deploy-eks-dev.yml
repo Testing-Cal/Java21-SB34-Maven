@@ -42,6 +42,7 @@ jobs:
           echo "DOCKER_LOGIN_URL=$(echo "$REGISTRY_URL" | cut -d'/' -f1)" >> "$GITHUB_ENV"
           
           echo "$JSON_STRING" | jq -r '.kubernetes' | yq > Helm.yaml
+          yq --help
           cat Helm.yaml
           #echo "$JSON_STRING" | jq -r '.kubernetes.vault' | yq  > Vault.yaml    
           
