@@ -11,9 +11,6 @@ on:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
-    environment:
-      name: 'Dev'
-      url: 'https://testing.com'
     env:
       JAVA_MVN_IMAGE_VERSION: "amazoncorretto:21-alpine" #https://hub.docker.com/_/maven/tags
       KUBECTL_IMAGE_VERSION: "bitnami/kubectl:1.28" #https://hub.docker.com/r/bitnami/kubectl/tags
