@@ -48,13 +48,14 @@ jobs:
           echo "ARTIFACT_HOST_SECRET=$(echo "$JSON_STRING" | jq -r '.general.ArtifactoryHostSecret')" >> "$GITHUB_ENV"
           echo "DOCKER_LOGIN_URL=$(echo "$REGISTRY_URL" | cut -d'/' -f1)" >> "$GITHUB_ENV"
 
-      - name: Unit Test
-        run: |
-          docker run --rm -v "$GITHUB_WORKSPACE":/opt/repo -w /opt/repo $JAVA_MVN_IMAGE_VERSION ./mvnw test --batch-mode
-
       - name: Build
         run: |
           docker run --rm -v "$GITHUB_WORKSPACE":/opt/repo -w /opt/repo $JAVA_MVN_IMAGE_VERSION ./mvnw clean install -Dmaven.test.skip=true
+
+
+      - name: Unit Test
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE":/opt/repo -w /opt/repo $JAVA_MVN_IMAGE_VERSION ./mvnw test --batch-mode
 
 
       - name: SonarQube Scan
