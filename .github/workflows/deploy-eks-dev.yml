@@ -42,8 +42,8 @@ jobs:
           echo "DOCKER_LOGIN_URL=$(echo "$REGISTRY_URL" | cut -d'/' -f1)" >> "$GITHUB_ENV"
           echo "KUBERNETES_DATA=$(echo "$JSON_STRING" | jq -r '.kubernetes')" >> "$GITHUB_ENV"
           
-          echo "$KUBERNETES_DATA" | yq -P > Helm.yaml
-          #echo "$JSON_STRING" | jq -r '.kubernetes.vault' | yq -P > Vault.yaml    
+          echo "$KUBERNETES_DATA" | yq  > Helm.yaml
+          #echo "$JSON_STRING" | jq -r '.kubernetes.vault' | yq  > Vault.yaml    
           
 
       - name: Configure Kubeconfig File
