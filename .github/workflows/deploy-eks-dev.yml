@@ -58,6 +58,7 @@ jobs:
            
            docker run --rm  --user root -v "$HOME/.kube/config":"/.kube/config" -e KUBECONFIG="/.kube/config" $KUBECTL_IMAGE_VERSION create ns "$KUBE_NAMESPACE" || true
            if [[ $DEPLOYMENT_TYPE == 'OPENSHIFT' ]]
+           then
               COUNT=$(grep 'serviceAccount' Helm.yaml | wc -l)
               if [[ $COUNT -gt 0 ]]
               then
