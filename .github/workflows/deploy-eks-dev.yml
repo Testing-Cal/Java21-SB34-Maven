@@ -40,8 +40,9 @@ jobs:
           echo "ARTIFACTORY_USER_SECRET=$(echo "$JSON_STRING" | jq -r '.general.ArtifactoryUserSecret')" >> "$GITHUB_ENV"
           echo "ARTIFACTORY_PASSWORD_SECRET=$(echo "$JSON_STRING" | jq -r '.general.ArtifactoryPasswordSecret')" >> "$GITHUB_ENV"
           echo "DOCKER_LOGIN_URL=$(echo "$REGISTRY_URL" | cut -d'/' -f1)" >> "$GITHUB_ENV"
+          echo "KUBERNETES_DATA=$(echo "$JSON_STRING" | jq -r '.kubernetes')" >> "$GITHUB_ENV"
           
-          echo "$JSON_STRING" | jq -r '.kubernetes' | yq -P > Helm.yaml
+          echo "$KUBERNETES_DATA" | yq -P > Helm.yaml
           #echo "$JSON_STRING" | jq -r '.kubernetes.vault' | yq -P > Vault.yaml    
           
 
